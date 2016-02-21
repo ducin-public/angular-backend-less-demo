@@ -3,14 +3,13 @@
 var demoApp = angular.module('demoApp', ['ngResource']);
 
 demoApp.controller('fetchCtrl', function ($scope, $resource) {
-
-    var User = $resource('/user/:userId', {
-        userId: '@id'
+    var Events = $resource('/events/:eventId', {
+        eventId: '@id'
     });
 
     $scope.fetch = function () {
-        var user = User.get({'userId': 123}, function (data) {
-            alert(JSON.stringify(data));
+        Events.query({'eventId': 6}, function (data) {
+            console.log(data);
         });
     };
 });
@@ -22,11 +21,5 @@ demoApp.config(function ($provide) {
 });
 
 demoApp.run(function ($httpBackend) {
-    var unmockedPaths = [/^\/templates\//, /^\/locale\//, /^\/i18n\//];
-    // do not bother server, respond with given content
-    $httpBackend.whenGET('/user/123').respond(200, {'firstName': 'Tomasz', 'lastName': 'Ducin'}, {header: 'one'});
-    // do real request
-    angular.forEach(unmockedPaths, function (path) {
-        $httpBackend.whenGET(path).passThrough();
-    });
+    $httpBackend.whenGET('/events/6').respond(200, ['$httpBackend', 'is', 'really', 'damn', 'cool', '!'], {header: 'one'});
 });
