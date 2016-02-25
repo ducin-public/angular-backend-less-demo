@@ -21,5 +21,9 @@ demoApp.config(function ($provide) {
 });
 
 demoApp.run(function ($httpBackend) {
-    $httpBackend.whenGET('/events/6').respond(200, ['$httpBackend', 'is', 'really', 'damn', 'cool', '!'], {header: 'one'});
+    $httpBackend.whenGET('/events/6').respond(
+        200,
+        ['$httpBackend', 'is', 'really', 'damn', 'cool', '!'],
+        {header: 'one'}
+    );
 });

@@ -8,6 +8,7 @@ function strip(data) {
 }
 
 demoApp.controller('fetchCtrl', function ($scope, $resource, $http) {
+
     var Organizers = $resource('/organizers');
 
     $scope.fetchOrganizersList = function () {
@@ -39,7 +40,7 @@ demoApp.controller('fetchCtrl', function ($scope, $resource, $http) {
     $scope.fetchUnmocked = function () {
         $http({
             method: "GET",
-            url: '/advanced/unmocked/file.json'
+            url: 'unmocked/file.json'
         }).then(function (response) {
             console.log(response.data);
         })
@@ -48,48 +49,30 @@ demoApp.controller('fetchCtrl', function ($scope, $resource, $http) {
 
 var events = [{
     "id": 1,
-    "link": "http://www.meetup.com/AngularJS-Warsaw/events/222611949/",
-    "date": "02.06.2015",
-    "address": "Asseco Poland S.A., Branickiego 13, Warszawa-Wilanów",
-    "description": "Pierwszy AngularJS Warsaw odbędzie się w siedzibie Asseco Poland"
+    "name": "FullStack 2014",
+    "date": "23-24.10.2014",
+    "link": "https://skillsmatter.com/conferences/6361-fullstack-node-and-javascript-conference",
+    "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum ligula quis tempor posuere. Morbi sagittis ante id blandit lobortis. Nunc sollicitudin libero interdum nisi tempor, vel tempor ante ullamcorper. Nullam dictum magna nec lobortis suscipit. Integer mauris velit, finibus at tellus et, imperdiet pulvinar arcu. Vivamus dictum iaculis justo, id hendrerit turpis aliquet ut."
 }, {
     "id": 2,
-    "link": "http://www.meetup.com/AngularJS-Warsaw/events/224042484/",
-    "date": "29.07.2015",
-    "address": "Aviva, ul. Domaniewska 44, 02-672 Warszawa",
-    "description": "Drugie AngularJS Warsaw odbędzie się w siedzibie Aviva"
+    "name": "FullStack 2015",
+    "date": "26-28.10.2015",
+    "link": "https://skillsmatter.com/conferences/6612-fullstack",
+    "lorem": "Duis interdum, massa vel placerat sollicitudin, enim elit imperdiet ligula, congue molestie erat diam et augue. Praesent pellentesque fringilla bibendum. Proin et tellus a velit sagittis elementum eget in sapien. Cras nisl velit, facilisis eget tempor id, molestie imperdiet metus."
 }, {
     "id": 3,
-    "link": "http://www.meetup.com/AngularJS-Warsaw/events/224789089/",
-    "date": "26.08.2015",
-    "address": "Aviva, ul. Domaniewska 44, 02-672 Warszawa",
-    "description": "Trzeci AngularJS Warsaw odbędzie się przy piwku i pizzy"
-}, {
-    "id": 4,
-    "link": "http://www.meetup.com/AngularJS-Warsaw/events/225840270/",
-    "date": "22.10.2015",
-    "address": "Aviva, ul. Domaniewska 44, 02-672 Warszawa",
-    "description": "#4 spotkanie z Angularem w tle"
-}, {
-    "id": 5,
-    "link": "http://www.meetup.com/AngularJS-Warsaw/events/226421480/",
-    "date": "03.12.2015",
-    "address": "Asseco w Wilanowie przy ul. Adama Branickiego 13",
-    "description": "#5 spotkanie z Angularem w tle odbędzie się 3 grudnia o 19:00"
-}, {
-    "id": 6,
-    "link": "http://www.meetup.com/AngularJS-Warsaw/events/228863948/",
-    "date": "22.02.2016",
-    "address": "ul. Domaniewska 44, 02-672 Warszawa",
-    "description": "#6 AngularJS Warsaw odbędzie się w siedzibie Aviva (http://www.aviva.pl)"
+    "name": "FullStack 2016",
+    "date": "13-15.07.2016",
+    "link": "https://skillsmatter.com/conferences/7278-fullstack-2016-the-conference-on-javascript-node-and-internet-of-things",
+    "lorem": "Maecenas quis sagittis felis. Suspendisse id rhoncus tellus. Mauris lectus augue, tincidunt non fringilla id, sodales ac ex. Nulla dictum sem a mauris sodales, sit amet eleifend purus dapibus."
 }];
 
 var organisers = [{
-    "firstName": "Darek",
-    "lastName": "Kalbarczyk"
+    "firstName": "Wendy",
+    "lastName": "Devolder"
 }, {
-    "firstName": "Arek",
-    "lastName": "Kalbarczyk"
+    "firstName": "Enrico",
+    "lastName": "Meloni"
 }];
 
 // mock part
@@ -126,7 +109,7 @@ demoApp.run(function ($httpBackend) {
 */
 
     // do real request
-    var unmockedPaths = [/\/unmocked\//];
+    var unmockedPaths = [/unmocked\//];
     angular.forEach(unmockedPaths, function (path) {
         $httpBackend.whenGET(path).passThrough();
     });
